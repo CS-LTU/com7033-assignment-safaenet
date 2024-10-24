@@ -14,3 +14,8 @@ class SmokingStatus(Enum):
     FORMERLY_SMOKED = 2
     UNKNOWN = 3
     
+class Gender(Enum):
+    Female = 0
+    Male = 1
+    Other = 2
+    

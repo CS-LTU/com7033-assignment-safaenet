@@ -11,7 +11,7 @@ db = SQLAlchemy(app)
 
 class PatientModel(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    gender = db.Column(db.Boolean, nullable = False)
+    gender = db.Column(db.Integer, nullable = False)
     age = db.Column(db.Integer, nullable = False)
     hypertension = db.Column(db.Boolean, nullable = False)
     heart_disease = db.Column(db.Boolean, nullable = False)
@@ -28,7 +28,7 @@ class PatientModel(db.Model):
 
 
 patient_put_parser = reqparse.RequestParser()
-patient_put_parser.add_argument('gender', type = bool, help = "gender of the patient", required = True)
+patient_put_parser.add_argument('gender', type = int, help = "gender of the patient", required = True)
 patient_put_parser.add_argument('age', type = int, help = "age of the patient", required = True)
 patient_put_parser.add_argument('hypertension', type = bool, help = "hypertension of the patient", required = True)
 patient_put_parser.add_argument('heart_disease', type = bool, help = "heart disease of the patient", required = True)
@@ -41,7 +41,7 @@ patient_put_parser.add_argument('smoking_status', type = int, help = "smoking st
 patient_put_parser.add_argument('stroke', type = bool, help = "stroke of the patient", required = True)
 
 patient_post_parser = reqparse.RequestParser()
-patient_post_parser.add_argument('gender', type=bool, help="Gender of the patient", required=True)
+patient_post_parser.add_argument('gender', type=int, help="Gender of the patient", required=True)
 patient_post_parser.add_argument('age', type=int, help="Age of the patient", required=True)
 patient_post_parser.add_argument('hypertension', type=bool, help="Hypertension status", required=True)
 patient_post_parser.add_argument('heart_disease', type=bool, help="Heart disease status", required=True)
@@ -55,7 +55,7 @@ patient_post_parser.add_argument('stroke', type=bool, help="Stroke status", requ
 
 resource_fields = {
     'id' : fields.Integer,
-    'gender' : fields.Boolean,
+    'gender' : fields.Integer,
     'age' : fields.Integer,
     'hypertension' : fields.Boolean,
     'heart_disease' : fields.Boolean,
@@ -66,7 +66,7 @@ resource_fields = {
     'bmi' : fields.Float,
     'smoking_status' : fields.Integer,
     'stroke' : fields.Boolean
-}    
+}
 
 # db.create_all()
 
@@ -158,7 +158,8 @@ class Patient(Resource):
         return {"message": "Patient deleted successfully"}, 200
     
     
-api.add_resource(Patient, "/GetById/<int:patient_id>", "/AddPatient", "/UpdatePatient/<int:patient_id>", "/GetByValue/<string:search_value>", "/GetAll", "/Delete/<int:patient_id>")
+api.add_resource(Patient, "/GetById/<int:patient_id>", "/AddPatient", "/UpdatePatient/<int:patient_id>",
+                 "/GetByValue/<string:search_value>", "/GetAll", "/Delete/<int:patient_id>")
 
 if (__name__ == '__main__'):
     app.run(debug = True)
