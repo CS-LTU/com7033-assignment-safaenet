@@ -1,0 +1,182 @@
+<div class="offcanvas offcanvas-start" data-bs-backdrop="static" data-bs-scroll="true" tabindex="-1" id="addNewOffcanvas" aria-labelledby="addNewOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="addNewOffcanvasLabel">Add New Patient</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <form action="{{ url_for('add_new_patient_clicked') }}" id="newPatientForm" method="post">
+            <div class="horizontal-container">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <label for="gender" class="form-label"><span style="color: red;">*</span>Gender</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="radio" name="genderOptions" id="genderOption1" required value="1">
+                        <label class="form-check-label" for="genderOption1">Male</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="radio" name="genderOptions" id="genderOption2" value="0">
+                        <label class="form-check-label" for="genderOption2">Female</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="radio" name="genderOptions" id="genderOption3" value="2">
+                        <label class="form-check-label" for="genderOption3">Other</label>
+                    </div>
+                </div>
+              </div>
+              
+              <div class="horizontal-container mt-2">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <label for="age" class="form-label"><span style="color: red;">*</span>Age</label>
+                    </div>
+                    <div class="col">
+                        <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '');" id="age" name="age" class="form-control" required maxlength="3">
+                    </div>
+                </div>
+              </div>
+              
+              <div class="horizontal-container mt-2">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <label for="hypertension" class="form-label"><span style="color: red;">*</span>Has Hypertension?</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="radio" name="hypertensionOptions" id="hypertension1" required value="1">
+                        <label class="form-check-label" for="hypertension1">Yes</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="radio" name="hypertensionOptions" id="hypertension2" value="0">
+                        <label class="form-check-label" for="hypertension2">No</label>
+                    </div>
+                </div>
+              </div>
+              
+              <div class="horizontal-container mt-2">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <label for="heart_disease" class="form-label"><span style="color: red;">*</span>Has Heart Disease?</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="radio" name="heartDiseaseOptions" id="heartDisease1" required value="1">
+                        <label class="form-check-label" for="heartDisease1">Yes</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="radio" name="heartDiseaseOptions" id="heartDisease2" value="0">
+                        <label class="form-check-label" for="heartDisease2">No</label>
+                    </div>
+                </div>
+              </div>
+              
+              <div class="horizontal-container mt-2">
+                <div class="row align-items-center">
+                    <div class="col-auto">
+                        <label for="ever_married" class="form-label"><span style="color: red;">*</span>Has Ever Married?</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="radio" name="everMarriedOptions" id="everMarried1" required value="1">
+                        <label class="form-check-label" for="everMarried1">Yes</label>
+                    </div>
+                    <div class="col">
+                        <input class="form-check-input" type="radio" name="everMarriedOptions" id="everMarried2" value="0">
+                        <label class="form-check-label" for="everMarried2">No</label>
+                    </div>
+                </div>
+            </div>
+              
+            <div class="horizontal-container mt-2">
+              <div class="row align-items-center">
+                  <div class="col-auto">
+                      <label for="work_type" class="form-label"><span style="color: red;">*</span>Work Type</label>
+                  </div>
+                  <div class="col">
+                    <select class="form-select" required name="workTypeOptions" aria-label="Combobox with placeholder">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="0">Children</option>
+                        <option value="1">Government</option>
+                        <option value="2">Private</option>
+                        <option value="3">Self-Employed</option>
+                        <option value="4">Never Worked</option>
+                    </select>
+                  </div>
+              </div>
+            </div>
+              
+            <div class="horizontal-container mt-2">
+              <div class="row align-items-center">
+                  <div class="col-auto">
+                      <label for="residence_type" class="form-label"><span style="color: red;">*</span>Residence Type</label>
+                  </div>
+                  <div class="col">
+                    <select class="form-select" name="residence_type" required aria-label="Combobox with placeholder">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="0">Rural</option>
+                        <option value="1">Urban</option>
+                    </select>
+                  </div>
+              </div>
+            </div>
+              
+            <div class="horizontal-container mt-2">
+              <div class="row align-items-center">
+                  <div class="col-auto">
+                      <label for="avg_glucose_level" class="form-label"><span style="color: red;">*</span>Average Glucose Level</label>
+                  </div>
+                  <div class="col">
+                      <input type="text" oninput="this.value = this.value.replace(/[^.0-9]/g, '');" id="avg_glucose_level" name="avg_glucose_level" class="form-control" required maxlength="7">
+                  </div>
+              </div>
+            </div>
+              
+            <div class="horizontal-container mt-2">
+              <div class="row align-items-center">
+                  <div class="col-auto">
+                      <label for="bmi" class="form-label">Body mass index (BMI)</label>
+                  </div>
+                  <div class="col">
+                      <input type="text" oninput="this.value = this.value.replace(/[^.0-9]/g, '');" id="bmi" name="bmi" class="form-control" maxlength="5">
+                  </div>
+              </div>
+            </div>
+              
+            <div class="horizontal-container mt-2">
+              <div class="row align-items-center">
+                  <div class="col-auto">
+                      <label for="smoking_status" class="form-label"><span style="color: red;">*</span>Smoking Status</label>
+                  </div>
+                  <div class="col">
+                    <select class="form-select" name="smoking_status" required aria-label="Combobox with placeholder">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="0">Never Smoked</option>
+                        <option value="1">Smokes</option>
+                        <option value="2">Formerly Smoked</option>
+                        <option value="3">Unknown</option>
+                    </select>
+                  </div>
+              </div>
+            </div>
+              
+            <div class="horizontal-container mt-2">
+              <div class="row align-items-center">
+                  <div class="col-auto">
+                      <label for="stroke" class="form-label"><span style="color: red;">*</span>Has Stroke</label>
+                  </div>
+                  <div class="col">
+                    <input class="form-check-input" type="radio" name="strokeOptions" id="stroke1" required value="1">
+                    <label class="form-check-label" for="stroke1">Yes</label>
+                </div>
+                <div class="col">
+                    <input class="form-check-input" type="radio" name="strokeOptions" id="stroke2" value="0">
+                    <label class="form-check-label" for="stroke2">No</label>
+                </div>
+              </div>
+            </div>
+        
+            <div class="horizontal-container mt-2">
+                <button type="button" class="btn btn-secondary close-button" data-bs-dismiss="offcanvas">Close</button>
+                <button type="submit" class="btn btn-success save-button">Save</button>
+            </div>
+        </form>
+  </div>
+</div>

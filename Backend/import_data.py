@@ -16,7 +16,7 @@ class PatientModel(db.Model):
     heart_disease = db.Column(db.Boolean, nullable = False)
     ever_married = db.Column(db.Boolean, nullable = False)
     work_type = db.Column(db.Integer, nullable = False)
-    Residence_type = db.Column(db.Boolean, nullable = False)
+    residence_type = db.Column(db.Boolean, nullable = False)
     avg_glucose_level = db.Column(db.Float, nullable = False)
     bmi = db.Column(db.Float, nullable = True)
     smoking_status = db.Column(db.Integer, nullable = False)

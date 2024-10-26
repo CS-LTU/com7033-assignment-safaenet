@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Backend",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/Backend/app.py",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Frontend",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/Frontend/app.py",
+            "console": "integratedTerminal"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Run Both Projects",
+            "configurations": ["Backend", "Frontend"]
+        }
+    ]
+}

@@ -1,0 +1,44 @@
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="infoModalLabel">Message</h5>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage">{{ message_text }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deletePatientModal" tabindex="-1" aria-labelledby="deletePatientModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="deletePatientModalLabel">Delete Patient</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="patientIdToDelete" class="col-form-label">Enter Patient ID:</label>
+              <input type="text" class="form-control" id="patientIdToDelete">
+            </div>
+            <div class="mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="deleteConfirm">
+                <label class="form-check-label" for="deleteConfirm"><span style="color: red;">*</span>
+                    I know that this operation is undoable.
+                </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+</div>

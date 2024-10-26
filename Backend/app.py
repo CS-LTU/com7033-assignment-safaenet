@@ -1,16 +1,3 @@
-
-# # @app.route('/')
-# # def home():
-# #     return render_template("home.html")
-
-
-
-
-# # @app.route('/patients/')
-# # def patients():
-# #     return "Welcome to Patients page"
-
-
 from flask import Flask, request
 from flask_restful import Api, Resource, marshal_with
 from models import db, PatientModel, resource_fields
@@ -18,7 +5,7 @@ from service import PatientService
 from parsers import patient_post_parser, patient_put_parser
 
 app = Flask(__name__)
-app.app_context().push()
+# app.app_context().push()
 api = Api(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db.init_app(app)

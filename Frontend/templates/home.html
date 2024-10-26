@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% include 'add_new_patient.html' %}
+{% include 'modals.html' %}
+
+{% block content %}
+
+<br>
+<h1 class="text-center">Welcome to the Patients Database App</h1>
+<br>
+<h3 class="text-center">Please choose an option</h3>
+<br>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-primary w-100" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#addNewOffcanvas" aria-controls="addNewOffcanvas">New Patient</button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-primary w-100">Search Patient</button>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-6">
+            <button class="btn btn-primary w-100">List All</button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-primary w-100">Delete Patient</button>
+        </div>
+    </div>
+</div>
+
+{% if has_message %}
+<script>
+    $(document).ready(function() {
+        $('#infoModal').modal('show');
+    })
+</script>
+{% endif %}
+  
+{% endblock content %}

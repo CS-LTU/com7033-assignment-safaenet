@@ -20,3 +20,8 @@ class Gender(Enum):
     Male = 1
     Other = 2
     
+    
+class ResidenceType(Enum):
+    Rural = 0
+    Urban = 1
+    

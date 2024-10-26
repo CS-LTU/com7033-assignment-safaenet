@@ -11,7 +11,7 @@ class PatientModel(db.Model):
     heart_disease = db.Column(db.Boolean, nullable=False)
     ever_married = db.Column(db.Boolean, nullable=False)
     work_type = db.Column(db.Integer, nullable=False)
-    Residence_type = db.Column(db.Boolean, nullable=False)
+    residence_type = db.Column(db.Boolean, nullable=False)
     avg_glucose_level = db.Column(db.Float, nullable=False)
     bmi = db.Column(db.Float, nullable=True)
     smoking_status = db.Column(db.Integer, nullable=False)
@@ -28,7 +28,7 @@ resource_fields = {
     'heart_disease' : fields.Boolean,
     'ever_married' : fields.Boolean,
     'work_type' : fields.Integer,
-    'Residence_type' : fields.Boolean,
+    'residence_type' : fields.Boolean,
     'avg_glucose_level' : fields.Float,
     'bmi' : fields.Float,
     'smoking_status' : fields.Integer,
