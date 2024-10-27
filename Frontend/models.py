@@ -1,4 +1,16 @@
-class NewPatient:
+class NewOrUpdatePatient:
+    gender : int
+    age : int
+    hypertension : bool
+    heart_disease : bool
+    ever_married : bool
+    work_type : int
+    residence_type : bool
+    avg_glucose_level : float
+    bmi : float
+    smoking_status : int
+    stroke : bool
+        
     def __init__(self, gender, age, hypertension, heart_disease, ever_married, work_type,
                  residence_type, avg_glucose_level, bmi, smoking_status, stroke):
         self.gender = gender
@@ -30,6 +42,19 @@ class NewPatient:
 
 
 class Patient:
+    id : int
+    gender : int
+    age : int
+    hypertension : bool
+    heart_disease : bool
+    ever_married : bool
+    work_type : int
+    residence_type : bool
+    avg_glucose_level : float
+    bmi : float
+    smoking_status : int
+    stroke : bool
+    
     def __init__(self, id, gender, age, hypertension, heart_disease, ever_married, work_type,
                  residence_type, avg_glucose_level, bmi, smoking_status, stroke):
         self.id = id

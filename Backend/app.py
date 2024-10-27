@@ -33,7 +33,7 @@ class PatientResource(Resource):
         return PatientService.delete_patient(patient_id)
 
 api.add_resource(PatientResource, "/GetById/<int:patient_id>", "/AddPatient", "/UpdatePatient/<int:patient_id>",
-                 "/GetByValue/<string:search_value>", "/GetAll", "/Delete/<int:patient_id>")
+                 "/GetByValue/<string:search_value>", "/GetAll", "/DeletePatient/<int:patient_id>")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -22,6 +22,6 @@ class Gender(Enum):
     
     
 class ResidenceType(Enum):
-    Rural = 0
-    Urban = 1
+    Rural = False
+    Urban = True
     

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Gender</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for Patient in Patients %}
+            <tr>
+                <td>{{ Patient.id }}</td>
+                <td>{% if Patient.gender == 0 %} Female
+                    {% elif Patient.gender == 1 %} Male
+                    {% elif Patient.gender == 2 %} Other
+                    {% endif %}</td>
+                <td>{{ Patient.age }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

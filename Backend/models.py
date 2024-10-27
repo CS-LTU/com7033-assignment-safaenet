@@ -5,7 +5,7 @@ db = SQLAlchemy()
 
 class PatientModel(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    gender = db.Column(db.Boolean, nullable=False)
+    gender = db.Column(db.Integer, nullable=False)
     age = db.Column(db.Integer, nullable=False)
     hypertension = db.Column(db.Boolean, nullable=False)
     heart_disease = db.Column(db.Boolean, nullable=False)

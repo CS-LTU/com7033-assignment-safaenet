@@ -1,14 +1,20 @@
+from flask_restful import abort
 from sqlalchemy import text
 from models import db, PatientModel
 
 class PatientDAL:
     @staticmethod
     def get_all_patients():
-        return PatientModel.query.all()
+        result = db.session.execute(text("SELECT * FROM patient_model"))
+        patients = result.fetchall()
+        return patients
 
     @staticmethod
     def get_patient_by_id(patient_id):
-        return PatientModel.query.get(patient_id)
+        result = PatientModel.query.get(patient_id)
+        if(result == None):
+            abort(404, description="Patient not found")
+        return result
 
     @staticmethod
     def search_patients_by_value(search_value):
