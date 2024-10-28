@@ -1,6 +1,6 @@
 from flask_restful import abort
 from sqlalchemy import text
-from models import db, PatientModel
+from models.patientModel import db, PatientModel
 
 class PatientDAL:
     @staticmethod

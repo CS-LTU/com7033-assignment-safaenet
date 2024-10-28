@@ -1,4 +1,4 @@
-from dal import PatientDAL
+from dal.patientsDAL import PatientDAL
 
 class PatientService:
     @staticmethod

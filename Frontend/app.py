@@ -1,4 +1,4 @@
-from flask import Flask, flash, jsonify, redirect, render_template, request, url_for
+from flask import Flask, jsonify, render_template, request
 import requests
 from models import NewOrUpdatePatient, Patient
 
@@ -108,14 +108,7 @@ def get_patients():
         response.raise_for_status()
         
         patients_json = response.json()
-        patients = [Patient.read_from_json(patient_data) for patient_data in patients_json]
-        
-        # patients_list = [{
-        #     "id": patient.id,
-        #     "gender": patient.gender,
-        #     "age": patient.age
-        # } for patient in patients]
-        
+        patients = [Patient.read_from_json(patient_data) for patient_data in patients_json]        
         return render_template('patients_list.html', Patients = patients)
 
     except requests.exceptions.RequestException as e:
