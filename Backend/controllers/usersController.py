@@ -33,7 +33,7 @@ import flask
 from flask_cors import cross_origin
 from flask_restful import Resource
 
-from services.userService import authenticate_user, register_user, update_password_service
+from services.userService import authenticate_user, register_user, update_password
 
 class AuthAPI(Resource):
     def post(self):
@@ -66,7 +66,7 @@ class AuthAPI(Resource):
                 return abort(401, "Unauthorized")
             old_password = data.get("old_password")
             new_password = data.get("new_password")
-            if update_password_service(session["user"], old_password, new_password):
+            if update_password(session["user"], old_password, new_password):
                 return jsonify({"message": "Password updated successfully"})
             return abort(400, "Old password is incorrect")
 

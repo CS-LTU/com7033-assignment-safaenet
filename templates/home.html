@@ -56,39 +56,15 @@
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", async function() {
-        const response = await fetch("http://127.0.0.1:5000/SessionCheck", {
-        method: 'GET',
-        credentials: 'include',
-    });
-        const result = await response.json();
-        if(result.loggedIn == false)
-        {
-            console.log("HTML is not logged In. Redirecting...");
-            window.location.href = '/'
-        }
-    });
-
     function showAddPatientOffcanvas() {
-        checkSession();
         const offcanvasElement = document.getElementById('addNewOffcanvas');
         const bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
         bsOffcanvas.show();
     }
 
     async function getPatientById(){
-        checkSession();
         document.getElementById('getPatientByIdForm').submit();
     }
-
-    async function checkSession() {
-        const response = await fetch("http://127.0.0.1:5000/SessionCheck", {
-        method: 'GET',
-        credentials: 'include',
-    });
-        const result = await response.json();
-        if(result.loggedIn == false) window.location.href = '/';
-    };
 </script>
 
 {% if has_message %}

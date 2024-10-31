@@ -2,7 +2,7 @@ from flask import Flask, jsonify, render_template, request
 import requests
 from flask_cors import CORS
 import requests.cookies
-from models import NewOrUpdatePatient, Patient
+from models.models import NewOrUpdatePatient, Patient
 
 RUNNING_PORT = 5001
 RUN_IN_DEBUG_MODE = True
@@ -16,7 +16,6 @@ SESSION_CHECK_URL = BASE_URL + "SessionCheck"
 LOGOUT_URL = BASE_URL + "auth"
 
 app = Flask(__name__)
-# CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5000", "supports_credentials": True}})
 def isBool(value):
         return value == '1'
     
