@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center">Login</h2>
+            <form id="loginForm" onsubmit="return loginUser(event)">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p class="mt-3">Don't have an account? <a href="#signup" data-bs-toggle="collapse">Sign Up</a></p>
+            </form>
+            <div id="message" class="mt-3"></div>
+
+            <div class="collapse" id="signup">
+                <h2 class="text-center mt-4">Sign Up</h2>
+                <form action="{{ url_for('signup') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="emailSignup" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="emailSignup" name="emailSignup" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="passwordSignup" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="passwordSignup" name="passwordSignup" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    async function loginUser(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const response = await fetch("http://127.0.0.1:5000?action=signin", {
+            method: 'POST',
+            credentials: "include",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const data = await response.json();
+        const messageDiv = document.getElementById('message');
+        
+        if (response.ok) {
+            messageDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+            setTimeout(() => {
+                window.location.href = '/home';
+            }, 50);
+        } else {
+            messageDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", async function() {
+        const response = await fetch("http://127.0.0.1:5000/SessionCheck", {
+        method: 'GET',
+        credentials: 'include',
+    });
+        const result = await response.json();
+        if(result.loggedIn)
+        {
+            console.log("HTML is already logged In. Redirecting...");
+            window.location.href = '/home'
+        }
+        else console.log("HTML is NOT logged In!");
+    });
+</script>
+
+{% endblock %}

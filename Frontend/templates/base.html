@@ -7,26 +7,51 @@
     <script src="{{ url_for('static', filename = './js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename = './js/jquery-3.6.0.min.js') }}"></script>
     <title>SSD App</title>
+    <style>
+      body {
+          background-color: #f8f9fa;
+      }
+      .container {
+          margin-top: 50px;
+      }
+  </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">LTU</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">LTU</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="#">Safa Dana (2404831) - 2024/2025 - Leeds Trinity University</a>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav me-auto">
+                <a class="nav-link active" aria-current="page" href="#">Safa Dana (2404831) - 2024/2025 - Leeds Trinity University</a>
             </div>
-          </div>
+              <button class="btn btn-outline-danger d-flex" onclick="doLogout()">Logout</button>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     {% block content %}
 
     {% endblock content %}
 
 </body>
+<script>
+  async function doLogout() {
+    const response = await fetch("http://127.0.0.1:5000/auth", {
+        method: 'DELETE',
+        credentials: 'include'
+    });
+
+    if (response.ok) {
+        alert("Logged out successfully");
+        window.location.href = '/';
+    } else {
+        alert("Logout failed. Please try again.");
+    }
+  }
+</script>
 </html>
