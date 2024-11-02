@@ -19,22 +19,23 @@
 <body>
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">LTU</a>
+        <span class="navbar-brand">LTU</span>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav me-auto">
-                <a class="nav-link active" aria-current="page" href="#">Safa Dana (2404831) - 2024/2025 - Leeds Trinity University</a>
+                <span class="nav-link active" aria-current="page">Safa Dana (2404831) - 2024/2025 - Leeds Trinity University</span>
             </div>
+            <button class="btn btn-outline-secondary d-flex" onclick="window.location.href='{{ url_for('home') }}';" style="margin-right: 5px;">Home</button>
             {% if session.get('user') %}
             <button class="btn btn-outline-secondary d-flex" onclick="window.location.href='{{ url_for('goto_change_password') }}';" style="margin-right: 5px;">Change Password</button>
-            <form action="{{ url_for('logout') }}" method="post">
-              <button class="btn btn-outline-danger d-flex" style="margin-top: 15px;">Logout</button>
-            </form>
+            <button class="btn btn-outline-danger d-flex" onclick="submitLogout()">Logout</button>
+            <!-- <form action="{{ url_for('logout') }}" method="post">
+              <button class="btn btn-outline-danger d-flex">Logout</button>
+            </form> -->
             {% endif %}
-            
         </div>
     </div>
 </nav>
@@ -45,4 +46,26 @@
     {% endblock content %}
 
 </body>
+
+<script>
+    async function submitLogout() {
+        try {
+            const response = await fetch("{{ url_for('logout') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include"
+            });
+
+            if (response.ok) {
+                window.location.href = "{{ url_for('home') }}";
+            } else {
+                console.error("Logout failed");
+            }
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
+    }
+</script>
 </html>
