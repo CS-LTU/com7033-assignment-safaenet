@@ -1,11 +1,11 @@
 # importing necessary modules
-from flask import Flask, jsonify, redirect, render_template, request, session, url_for
+from flask import Flask, redirect, render_template, request, session, url_for
 import requests
 import requests.cookies
-from models.models import NewOrUpdatePatient, Patient
+from models.models import NewOrUpdatePatient
 from services.userService import authenticate_user, register_user, update_password
 from services.patientService import add_patient, delete_patient, get_all_patients, get_patient_by_id, update_patient
-from models.patientModel import db
+from models.models import db
 
 RUNNING_PORT = 5000 # Set the port number of the App when running
 RUN_IN_DEBUG_MODE = True # if True we can see the outputs and logs in the Terminal

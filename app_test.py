@@ -9,17 +9,17 @@ class FlaskAppTests(unittest.TestCase):
         # Set up the testing environment
         app.config['TESTING'] = True
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test_database.db'
-        app.config['SECRET_KEY'] = 'test_secret_key'
+        app.config['SECRET_KEY'] = '1q2w3e4r'
         app.config['SESSION_PERMANENT'] = False
         cls.client = app.test_client()
         with app.app_context():
             db.create_all()  # Create tables in the test database
 
-    @classmethod
-    def tearDownClass(cls):
-        # Clean up the database after all tests
-        with app.app_context():
-            db.drop_all()
+    # @classmethod
+    # def tearDownClass(cls):
+    #     # Clean up the database after all tests
+    #     with app.app_context():
+    #         db.drop_all()
 
     def test_home_redirects_if_not_logged_in(self):
         """Test that the home page redirects to login if user not signed in."""
