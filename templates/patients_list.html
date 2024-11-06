@@ -14,6 +14,7 @@
             <th>Id</th>
             <th>Gender</th>
             <th>Age</th>
+            <th>View</th>
         </tr>
     </thead>
     <tbody>
@@ -25,6 +26,7 @@
                     {% elif Patient.gender == 2 %} Other
                     {% endif %}</td>
                 <td>{{ Patient.age }}</td>
+                <td><a href="{{ url_for('viewFromList', pId = Patient.id) }}" class="btn btn-success">View</a></td>
             </tr>
         {% endfor %}
     </tbody>

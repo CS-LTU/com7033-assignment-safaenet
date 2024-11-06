@@ -152,8 +152,6 @@ def SearchPatientById():
     patientId = request.form.get('search_patient_id')
     try:
         result = get_patient_by_id(patientId)
-        
-        
         if(result == 404):
             return render_template('home.html', has_message=True, message_text=f"Patient with Id {patientId} was not found.")
         else:
@@ -189,5 +187,20 @@ def get_patients():
     except requests.exceptions.RequestException as e:
         return render_template('home.html', has_message=True, message_text=f"There was an error connecting to the database. {e}")
 
+# This is for the View button inside the Patients List
+@app.route('/viewFromList/<int:pId>', methods=['POST', 'GET'])
+def viewFromList(pId):
+    if("user" not in session): # If user is not signed in, App will redirect to the login page
+        return redirect(url_for("home"))
+    try:
+        result = get_patient_by_id(pId)        
+        if(result == 404):
+            return render_template('home.html', has_message=True, message_text=f"Patient with Id {pId} was not found.")
+        else:
+            # patient = Patient.read_from_json(json_data)
+            return render_template("home.html", has_patient_to_view=True, patient_to_view=result)
+    except Exception as e:
+        return render_template('home.html', has_message=True, message_text=f"There was an error connecting to the database. {e}")
+    
 if __name__ == '__main__':
     app.run(port=RUNNING_PORT, debug=RUN_IN_DEBUG_MODE)

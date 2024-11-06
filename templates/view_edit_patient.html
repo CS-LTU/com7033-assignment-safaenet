@@ -135,7 +135,7 @@
                   </div>
                   <div class="col">
                       <input type="text" oninput="this.value = this.value.replace(/[^.0-9]/g, '');" id="avg_glucose_level"
-                      value="{{patient_to_view.avg_glucose_level}}" name="avg_glucose_level" class="form-control" required maxlength="7">
+                      value="{{ "%.2f" | format(patient_to_view.avg_glucose_level) }}" name="avg_glucose_level" class="form-control" required maxlength="7">
                   </div>
               </div>
             </div>
@@ -147,7 +147,7 @@
                   </div>
                   <div class="col">
                       <input type="text" oninput="this.value = this.value.replace(/[^.0-9]/g, '');" id="bmi" name="bmi"
-                      value="{{patient_to_view.bmi}}" class="form-control" maxlength="5">
+                      value="{{ "%.2f" | format(patient_to_view.bmi) if patient_to_view.bmi is not none else '' }}" class="form-control" maxlength="5">
                   </div>
               </div>
             </div>

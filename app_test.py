@@ -1,7 +1,7 @@
 # test_app.py
 import unittest
 from app import app  # Importing the Flask app
-from models.patientModel import db
+from models.models import db
 
 class FlaskAppTests(unittest.TestCase):
     @classmethod

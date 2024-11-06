@@ -1,6 +1,6 @@
 from flask_restful import abort
 from sqlalchemy import text
-from models.patientModel import db, PatientModel
+from models.models import db, PatientModel
 
 class PatientDAL:
     # Load all patients from the sqlite DB
@@ -15,7 +15,7 @@ class PatientDAL:
     def get_patient_by_id(patient_id):
         result = PatientModel.query.get(patient_id)
         if(result == None):
-            abort(404, description="Patient not found")
+            return 404
         return result
 
     # Add a patient to DB. It takes patient data as object and converts it first to Patient Model. Then saves it in to DB
