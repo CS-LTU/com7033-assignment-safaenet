@@ -8,6 +8,7 @@ class PatientDAL:
     def get_all_patients():
         result = db.session.execute(text("SELECT * FROM patient_model"))
         patients = result.fetchall()
+        db.session.close()
         return patients
 
     # Search for a patient with a patient ID and return it. Otherwise, return code 404 (Not found)
@@ -24,6 +25,7 @@ class PatientDAL:
         new_patient = PatientModel(**patient_data)
         db.session.add(new_patient)
         db.session.commit()
+        db.session.close()
         return new_patient
 
     # This method takes patient original data and updated data as parameters, then updates all fields to the updated data
@@ -32,9 +34,11 @@ class PatientDAL:
         for key, value in updated_data.items():
             setattr(patient, key, value)
         db.session.commit()
+        db.session.close()
 
     # Simple method to delete a patient from the DB by it's patient ID
     @staticmethod
     def delete_patient(patient):
         db.session.delete(patient)
         db.session.commit()
+        db.session.close()

@@ -69,33 +69,3 @@ class NewOrUpdatePatient:
         self.bmi = bmi
         self.smoking_status = smoking_status
         self.stroke = stroke
-
-# This class is used when user loads a patient detail from the DB
-class Patient:
-    id : int
-    gender : int
-    age : int
-    hypertension : bool
-    heart_disease : bool
-    ever_married : bool
-    work_type : int
-    residence_type : bool
-    avg_glucose_level : float
-    bmi : float
-    smoking_status : int
-    stroke : bool
-    
-    def __init__(self, id, gender, age, hypertension, heart_disease, ever_married, work_type,
-                 residence_type, avg_glucose_level, bmi, smoking_status, stroke):
-        self.id = id
-        self.gender = gender
-        self.age = age
-        self.hypertension = hypertension
-        self.heart_disease = heart_disease
-        self.ever_married = ever_married
-        self.work_type = work_type
-        self.residence_type = residence_type
-        self.avg_glucose_level = avg_glucose_level
-        self.bmi = bmi
-        self.smoking_status = smoking_status
-        self.stroke = stroke

@@ -17,7 +17,9 @@ app.secret_key = '1qaz2wsx'
 app.config['SESSION_PERMANENT'] = False
 
 db.init_app(app)
-
+with app.app_context():
+    db.create_all()
+    
 # To convert the fields received from db to boolean.
 def intToBoolean(value):
         return value == '1'
@@ -76,15 +78,15 @@ def change_password():
     confirm_password = request.form.get('confirm_password')
     username = session["user"]
     if(old_password == new_password):
-        return render_template('home.html', has_message=True, message_text=f"Old password and new password cannot be the same.")
+        return render_template('change_password.html', has_message=True, message_text=f"Old password and new password cannot be the same.")
     if(new_password == confirm_password):
         result = update_password(username, old_password, new_password)
     else:
-        return render_template('home.html', has_message=True, message_text=f"New password and confirm password don't match.")
+        return render_template('change_password.html', has_message=True, message_text=f"New password and confirm password don't match.")
     if(result):
         return redirect(url_for('home'))
     else:
-        return render_template('home.html', has_message=True, message_text=f"Old password doesn't match.")
+        return render_template('change_password.html', has_message=True, message_text=f"Old password doesn't match.")
 
 # Route for adding new patient
 @app.route('/add_new_patient_clicked', methods = ['POST'])
