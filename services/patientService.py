@@ -62,9 +62,10 @@ def get_patient_by_id(patient_id):
     except TypeError:
         return 500
     patient = PatientDAL.get_patient_by_id(patient_id)
-    patient.avg_glucose_level = decryptValue(patient.avg_glucose_level)
-    if(patient.bmi != None):
-        patient.bmi = decryptValue(patient.bmi)
+    if(patient != 404):
+        patient.avg_glucose_level = decryptValue(patient.avg_glucose_level)
+        if(patient.bmi != None):
+            patient.bmi = decryptValue(patient.bmi)
     return patient
 
 # Forwards Add patient call to DAL

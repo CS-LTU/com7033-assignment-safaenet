@@ -22,13 +22,13 @@ class FlaskAppTests(unittest.TestCase):
     #         db.drop_all()
 
     def test_home_redirects_if_not_logged_in(self):
-        """Test that the home page redirects to login if user not signed in."""
+        # Test that the home page redirects to login if user not signed in.
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'signin', response.data)
 
     def test_signin_invalid_credentials(self):
-        """Test that invalid login credentials return an error."""
+        # Test that invalid login credentials return an error.
         response = self.client.post('/signin', data={
             'email': 'fakeuser@test.com',
             'password': 'wrongpassword'
@@ -37,7 +37,7 @@ class FlaskAppTests(unittest.TestCase):
         self.assertIn(b'Invalid Credentials', response.data)
 
     def test_signup_existing_user(self):
-        """Test that trying to sign up with an existing user returns an error."""
+        # Test that trying to sign up with an existing user returns an error.
         response = self.client.post('/signup', data={
             'emailSignup': 'testuser@example.com',
             'passwordSignup': 'testpassword'
@@ -46,7 +46,7 @@ class FlaskAppTests(unittest.TestCase):
         self.assertIn(b'Error when signing up', response.data)
 
     def test_add_new_patient_redirects_if_not_logged_in(self):
-        """Test add new patient redirects to login if user not signed in."""
+        # Test add new patient redirects to login if user not signed in.
         response = self.client.post('/add_new_patient_clicked', data={
             'genderOptions': 'Male',
             'age': '30',

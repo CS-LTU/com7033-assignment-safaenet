@@ -17,8 +17,8 @@ app.secret_key = '1qaz2wsx'
 app.config['SESSION_PERMANENT'] = False
 
 db.init_app(app)
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
     
 # To convert the fields received from db to boolean.
 def intToBoolean(value):

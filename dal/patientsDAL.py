@@ -25,7 +25,6 @@ class PatientDAL:
         new_patient = PatientModel(**patient_data)
         db.session.add(new_patient)
         db.session.commit()
-        db.session.close()
         return new_patient
 
     # This method takes patient original data and updated data as parameters, then updates all fields to the updated data
